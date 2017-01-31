@@ -110,6 +110,7 @@ elif a == 0:
 elif descriminant == 0:
     print("There is one solution to your equation.")
     answer = (-1 * b) / (2 * a)
+    print(answer)
 
 elif descriminant > 0:
     print("There are two solutions to your equation.")
