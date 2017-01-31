@@ -10,7 +10,7 @@ import math
 # Don't worry about making an exception for these right now.
 
 
-percentage = 96
+percentage = float(input("Enter a grade percentage: "))
 if percentage >= 97 and percentage <= 100:
     letter_grade = "A+"
 elif percentage < 97 and percentage >= 93:
