@@ -1,3 +1,4 @@
+import random
 #LISTS (35PTS TOTAL)
 #In these exercises you write functions. Of course, you should not only write the functions,
 #you should also write code to test them. For practice, you should also comment your
@@ -17,11 +18,26 @@ now", "Cannot predict now", "Concentrate and ask again", "Don ' t \
 count on it", "My reply is no", "My sources say no", "Outlook \
 not so good", "Very doubtful" ]
 
+def eight_ball(possible_answers):
+    return(possible_answers[random.randrange(len(possible_answers))])
+print(eight_ball(answer_list))
+
 
 # PROBLEM 2 (Shuffle - 5pts)
 # A playing card consists of a suit (Heart, Diamond, Club, Spade) and a value (2,3,4,5,6,7,8,9,10,J,Q,K,A).
 # Create a list of all possible playing cards, which is a deck.
 # Then create a function that shuffles the deck, producing a random order.
+deck = []
+cards = [2,3,4,5,6,7,8,9,10,"J","Q","K","A"]
+suits = ["C","H","S","D"]
+for suit in suits:
+    for card in cards:
+        deck.append([card,suit])
+
+def shuffle_deck(list):
+    random.shuffle(list)
+    return(list)
+print(shuffle_deck(deck))
 
 
 # PROBLEM 3 (The sieve of Eratosthenes - 10pts)
@@ -36,6 +52,8 @@ not so good", "Very doubtful" ]
 # Process all the numbers of the list in this way. When you have finished,
 # the only numbers left on the list are primes.
 # Use this method to determine all the primes between 1 and 1000.
+
+
 
 # PROBLEM 4 (Tic-Tac-Toe - 15pts)
 # Write a Tic-Tac-Toe program that allows two people to play the game against each other.
