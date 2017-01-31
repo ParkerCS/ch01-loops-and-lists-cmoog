@@ -101,24 +101,20 @@ if a == 0 and b == 0:
         print("All real numbers.")
     else:
         print("No solution")
-
 elif a == 0:
     print("This is not a quadratic equation.")
     answer = (-1 * c) / b
     print("The answer is:", answer)
-
 elif descriminant == 0:
     print("There is one solution to your equation.")
     answer = (-1 * b) / (2 * a)
     print(answer)
-
 elif descriminant > 0:
     print("There are two solutions to your equation.")
     answer = ((-1 * b) + math.sqrt(b**2 - (4*a*c))) / (2 * a)
     print("Solution #1:", answer)
     answer = ((-1 * b) - math.sqrt(b**2 - (4*a*c))) / (2 * a)
     print("Solution #2:", answer)
-
 elif descriminant < 0:
     print("There are 0 real solutions to your equation.")
 
