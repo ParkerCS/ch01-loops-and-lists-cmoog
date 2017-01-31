@@ -4,8 +4,6 @@ import random
 #you should also write code to test them. For practice, you should also comment your
 #functions as explained above.
 
-
-
 #PROBLEM 1 (8-ball - 5pts)
 # A magic 8-ball, when asked a question, provides a random answer from a list.
 # The code below contains a list of possible answers. Create a magic 8-ball program that
@@ -52,6 +50,24 @@ print(shuffle_deck(deck))
 # Process all the numbers of the list in this way. When you have finished,
 # the only numbers left on the list are primes.
 # Use this method to determine all the primes between 1 and 1000.
+
+sequence = []
+def eratosthenes_method(max):
+    for i in range(max):
+        sequence.append(i+1)
+
+    for k in range(1,len(sequence)):
+        sequence[0] = 0
+        if sequence[k] != 0 and sequence[k] != 1:
+            for j in range(2, max // sequence[k]):
+                sequence[j * sequence[k] - 1] = 0
+
+
+
+    print(sequence)
+
+eratosthenes_method(100)
+
 
 
 
