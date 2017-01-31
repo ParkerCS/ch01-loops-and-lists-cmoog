@@ -1,5 +1,5 @@
 #CONDITIONS (15PTS TOTAL)
-
+import math
 # PROBLEM 1 (GPA - 4pts)
 # Grades are values between 0 and 100
 # We will translate grades to letters using:
@@ -49,11 +49,31 @@ print(letter_grade)
 # the program should say that there are 3 different vowels in the string.
 
 user_input = input("Please input a string: ")
-vowel_count = 0
+a_vowel = False
+e_vowel = False
+i_vowel = False
+o_vowel = False
+u_vowel = False
+
 for i in range(len(user_input)):
-    if user_input[i].upper() == "A" or user_input[i].upper() == "E" or user_input[i].upper() == "I" or user_input[i].upper() == "O" or user_input[i].upper() == "U":
-        vowel_count += 1
-print(vowel_count)
+    if user_input[i].upper() == "A":
+        a_vowel = True
+    if user_input[i].upper() == "E":
+        e_vowel = True
+    if user_input[i].upper() == "I":
+        i_vowel = True
+    if user_input[i].upper() == "O":
+        o_vowel = True
+    if user_input[i].upper() == "U":
+        u_vowel = True
+vowel_count = a_vowel + e_vowel + i_vowel + o_vowel + u_vowel
+if vowel_count  == 0:
+    print("There are no vowels in this string.")
+elif vowel_count == 1:
+    print("There is one unique vowel in this string.")
+else:
+    print("There are", vowel_count, "unique vowels in this string.")
+
 
 # PROBLEM 3 (Quadratic Equation - 6pts)
 # You can solve quadratic equations using the quadratic formula.
@@ -68,3 +88,38 @@ print(vowel_count)
 # then prints those solutions.
 # Note: Make sure that you also take into account the case that A is zero,
 # and the case that both A and B are zero.
+
+a = float(input("Please enter an A value: "))
+b = float(input("Please enter a B value: "))
+c = float(input("Please enter a C value: "))
+
+descriminant = b**2 - 4 * a * c
+
+
+if a == 0 and b == 0:
+    if c == 0:
+        print("All real numbers.")
+    else:
+        print("No solution")
+
+elif a == 0:
+    print("This is not a quadratic equation.")
+    answer = (-1 * c) / b
+    print("The answer is:", answer)
+
+elif descriminant == 0:
+    print("There is one solution to your equation.")
+    answer = (-1 * b) / (2 * a)
+
+elif descriminant > 0:
+    print("There are two solutions to your equation.")
+    answer = ((-1 * b) + math.sqrt(b**2 - (4*a*c))) / (2 * a)
+    print("Solution #1:", answer)
+    answer = ((-1 * b) - math.sqrt(b**2 - (4*a*c))) / (2 * a)
+    print("Solution #2:", answer)
+
+elif descriminant < 0:
+    print("There are 0 real solutions to your equation.")
+
+
+
