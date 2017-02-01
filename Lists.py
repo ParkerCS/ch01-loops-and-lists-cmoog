@@ -53,20 +53,26 @@ print(shuffle_deck(deck))
 
 sequence = []
 def eratosthenes_method(max):
-    for i in range(max):
-        sequence.append(i+1)
+    for i in range(0, max):
+        sequence.append(i) # so that the list starts at 1
 
-    for k in range(1,len(sequence)):
-        sequence[0] = 0
-        if sequence[k] != 0 and sequence[k] != 1:
+    for k in range(1,len(sequence)): # the one so that is starts with the number 2
+        sequence[1] = 0
+        if sequence[k] != 0:
             for j in range(2, max // sequence[k]):
-                sequence[j * sequence[k] - 1] = 0
+                sequence[j * sequence[k]] = 0
 
+    done = False
+    while not done:
+        if sequence.count(0) != 0:
+            sequence.remove(0)
+        else:
+            done = True
 
+    return sequence
 
-    print(sequence)
-
-eratosthenes_method(100)
+print(eratosthenes_method(1000))
+print(len(eratosthenes_method(1000)))
 
 
 
