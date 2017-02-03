@@ -50,45 +50,37 @@ print(shuffle_deck(deck))
 # Process all the numbers of the list in this way. When you have finished,
 # the only numbers left on the list are primes.
 # Use this method to determine all the primes between 1 and 1000.
-'''
-sequence = []
-def eratosthenes_method(max):
-    for i in range(0, max):
-        sequence.append(i) # so that the list starts at 1
 
-    for k in range(1,len(sequence)): # the one so that is starts with the number 2
-        sequence[1] = 0
-        if sequence[k] != 0:
-            for j in range(2, max // sequence[k]):
-                sequence[j * sequence[k]] = 0
-
-    done = False
-    while not done:
-        if sequence.count(0) != 0:
-            sequence.remove(0)
-        else:
-            done = True
-
-    return sequence
-
-print(eratosthenes_method(1000))
-print(len(eratosthenes_method(1000)))
-'''
 sequence = []
 def populate_sequence(max):
     for i in range(max):
         sequence.append(i)
-    print(sequence)
+def delete_zeros(list):
+    done = False
+    while not done:
+        if list.count(0) != 0:
+            list.remove(0)
+        else:
+            done = True
 
-def eratosthenes_method(max):
+def eratosthenes_method(upper_limit):
+    max = upper_limit + 100
     populate_sequence(max)
     for sequence_item in range(2, len(sequence)):
         if sequence[sequence_item] != 0:  # is it has already been turned to 0
             for multiple in range(2, max // sequence[sequence_item]): # the range is how many times you can multiply the number without going out of range
                 sequence[multiple * sequence_item] = 0
 
+    sequence[1] = 0
+    delete_zeros(sequence)
+
+    while sequence[len(sequence)-1] > upper_limit:
+        sequence.pop()
+
     print(sequence)
-eratosthenes_method(100)
+    print(len(sequence))
+
+eratosthenes_method(1000)
 
 # PROBLEM 4 (Tic-Tac-Toe - 15pts)
 # Write a Tic-Tac-Toe program that allows two people to play the game against each other.
