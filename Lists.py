@@ -117,6 +117,89 @@ eratosthenes_method(1000)
 #       break
 #   switch player
 
+# 0 = empty
+# 1 = x
+# 2 = o
+board = [
+[0,0,0],
+[0,0,0],
+[0,0,0]
+]
+def display_board(board):
+    for row in range(3):
+        for col in range(3):
+            if board[row][col] == 1:
+                print("x ", end="")
+            elif board[row][col] == 2:
+                print("o ", end="")
+            else:
+                print("- ", end="")
+        print()
+
+def get_row_column(board, player):
+    row = int(input("Please enter the row: "))
+    col = int(input("Please enter the column:"))
+    if board[row][col] != 0:
+        print("Error: That space is taken.")
+    elif player == "x":
+        board[row][col] = 1
+    elif player == "o":
+        board[row][col] = 2
+    return board
+
+def product(list):
+    result = 1
+    for i in range(len(list)):
+        result *= list[i]
+    return result
+
+
+def check_winner(board):
+    for row in range(3): ## if there are three in a row
+        if sum(board[row]) == 6:
+            return "o"
+        elif sum(board[row]) == 3 and product(board[row]):
+            return "x"
+        else:
+            return None
+
+    for col in range(3):
+        if board[0][col] + board[1][col] + board[2][col] == 6:
+            return "o"
+        elif board[0][col] + board[1][col] + board[2][col] == 3 and board[0][col] * board[1][col] * board[2][col] == 1:
+            return "x"
+        else:
+            return None
+    if board[0][0] + board[1][1] + board[2][2] == 6:
+        return"o"
+    elif board[0][0] + board[1][1] + board[2][2] == 3 and board[0][0] * board[1][1] * board[2][2] == 1:
+        return "x"
+    else:
+        return None
+
+
+
+game_over = False
+player = "x"
+while not game_over:
+
+    board = get_row_column(board, player)
+    display_board(board)
+    if check_winner(board) == "o":
+        game_over = True
+        print("o has won the game")
+
+    elif check_winner(board) == "x":
+        game_over = True
+        print("x has won the game")
+
+    if player == "x":
+        player = "o"
+    else:
+        player = "x"
+
+
+
 # CHALLENGE PROBLEM 5 (Battleship NO CREDIT, JUST IF YOU WANT TO TRY IT)
 # Create a program that is a simplified version of the game “Battleship.”
 # The computer creates (in memory) a grid that is 4 cells wide and 3 cells high.
