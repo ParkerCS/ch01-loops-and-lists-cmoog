@@ -137,41 +137,46 @@ def display_board(board):
         print()
 
 def get_row_column(board, player):
+    error = False
     row = int(input("Please enter the row: ")) - 1
-    col = int(input("Please enter the column:")) - 1
+    col = int(input("Please enter the column: ")) - 1
     if board[row][col] != 0:
         print("Error: That space is taken.")
+        error = True
     elif player == "x":
         board[row][col] = 1
     elif player == "o":
         board[row][col] = 2
-    return board
+    return board, error
+
+def check_draw(board):
+    if board[0].count(0) == 0 and board[1].count(0) == 0 and board[2].count(0) == 0:
+        print("It's a draw. The game is over.")
+        return "draw"
+    else:
+        return None
+
 
 def product(list):
     result = 1
     for i in range(len(list)):
         result *= list[i]
     return result
-
-
 def check_winner(board):
     for row in range(3): ## if there are three in a row
         if sum(board[row]) == 6:
             return "o"
         elif sum(board[row]) == 3 and product(board[row]):
             return "x"
-
     for col in range(3):
         if board[0][col] + board[1][col] + board[2][col] == 6:
             return "o"
         elif board[0][col] + board[1][col] + board[2][col] == 3 and board[0][col] * board[1][col] * board[2][col] == 1:
             return "x"
-
     if board[0][0] + board[1][1] + board[2][2] == 6:
         return"o"
     elif board[0][0] + board[1][1] + board[2][2] == 3 and board[0][0] * board[1][1] * board[2][2] == 1:
         return "x"
-
     if board[0][2] + board[1][1] + board[2][0] == 6:
         return "o"
     if board[0][2] + board[1][1] + board[2][0] == 3 and board[0][2] * board[1][1] * board[2][0] == 1:
@@ -179,8 +184,11 @@ def check_winner(board):
 game_over = False
 player = "x"
 while not game_over:
+    board_and_value = get_row_column(board, player)  # to see if its a repeat and then don't swtich player
 
-    board = get_row_column(board, player)
+    board = board_and_value[0]
+    error = board_and_value[1]
+
     display_board(board)
     if check_winner(board) == "o":
         game_over = True
@@ -189,13 +197,15 @@ while not game_over:
     elif check_winner(board) == "x":
         game_over = True
         print("x has won the game")
+    if check_draw(board) ==  "draw":
+        game_over = True
 
-    if player == "x":
+    if player == "x" and not error:
         player = "o"
-    else:
+    elif not error:
         player = "x"
 
-
+    print()
 
 # CHALLENGE PROBLEM 5 (Battleship NO CREDIT, JUST IF YOU WANT TO TRY IT)
 # Create a program that is a simplified version of the game “Battleship.”
