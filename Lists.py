@@ -135,7 +135,6 @@ def display_board(board):
             else:
                 print("- ", end="")
         print()
-
 def get_row_column(board, player):
     error = False
     row = int(input("Please enter the row: ")) - 1
@@ -148,15 +147,12 @@ def get_row_column(board, player):
     elif player == "o":
         board[row][col] = 2
     return board, error
-
 def check_draw(board):
     if board[0].count(0) == 0 and board[1].count(0) == 0 and board[2].count(0) == 0:
         print("It's a draw. The game is over.")
         return "draw"
     else:
         return None
-
-
 def product(list):
     result = 1
     for i in range(len(list)):
@@ -185,26 +181,21 @@ game_over = False
 player = "x"
 while not game_over:
     board_and_value = get_row_column(board, player)  # to see if its a repeat and then don't swtich player
-
     board = board_and_value[0]
     error = board_and_value[1]
-
     display_board(board)
     if check_winner(board) == "o":
         game_over = True
         print("o has won the game")
-
     elif check_winner(board) == "x":
         game_over = True
         print("x has won the game")
     if check_draw(board) ==  "draw":
         game_over = True
-
     if player == "x" and not error:
         player = "o"
     elif not error:
         player = "x"
-
     print()
 
 # CHALLENGE PROBLEM 5 (Battleship NO CREDIT, JUST IF YOU WANT TO TRY IT)
