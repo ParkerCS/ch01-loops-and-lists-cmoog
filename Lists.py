@@ -137,8 +137,8 @@ def display_board(board):
         print()
 
 def get_row_column(board, player):
-    row = int(input("Please enter the row: "))
-    col = int(input("Please enter the column:"))
+    row = int(input("Please enter the row: ")) - 1
+    col = int(input("Please enter the column:")) - 1
     if board[row][col] != 0:
         print("Error: That space is taken.")
     elif player == "x":
@@ -160,25 +160,22 @@ def check_winner(board):
             return "o"
         elif sum(board[row]) == 3 and product(board[row]):
             return "x"
-        else:
-            return None
 
     for col in range(3):
         if board[0][col] + board[1][col] + board[2][col] == 6:
             return "o"
         elif board[0][col] + board[1][col] + board[2][col] == 3 and board[0][col] * board[1][col] * board[2][col] == 1:
             return "x"
-        else:
-            return None
+
     if board[0][0] + board[1][1] + board[2][2] == 6:
         return"o"
     elif board[0][0] + board[1][1] + board[2][2] == 3 and board[0][0] * board[1][1] * board[2][2] == 1:
         return "x"
-    else:
-        return None
 
-
-
+    if board[0][2] + board[1][1] + board[2][0] == 6:
+        return "o"
+    if board[0][2] + board[1][1] + board[2][0] == 3 and board[0][2] * board[1][1] * board[2][0] == 1:
+        return "x"
 game_over = False
 player = "x"
 while not game_over:
