@@ -137,8 +137,8 @@ def display_board(board):
         print()
 def get_row_column(board, player):
     error = False
-    row = int(input("Please enter the row: ")) - 1
-    col = int(input("Please enter the column: ")) - 1
+    row = int(input("Please enter the row (1,2,3): ")) - 1
+    col = int(input("Please enter the column (3,2,1): ")) - 1
     if board[row][col] != 0:
         print("Error: That space is taken.")
         error = True
