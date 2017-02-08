@@ -1,3 +1,5 @@
+# Works very well.  Your prompt for the column reads 3,2,1 instead of 1,2,3.  That might confuse the player, but otherwise all looks good.
+
 import random
 #LISTS (35PTS TOTAL)
 #In these exercises you write functions. Of course, you should not only write the functions,
